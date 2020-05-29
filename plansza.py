@@ -8,14 +8,6 @@ pygame.display.set_caption("Bomberman")
 icon = pygame.image.load('bomba.jpg')
 pygame.display.set_icon(icon)
 
-#szare kwadraty aka murki
-#boardImg = pygame.image.load('zielony_kwadrat.png')
-#boardX= 200
-#boardY = 150
-
-def board():
-    screen.blit(boardImg, (boardX, boardY))
-
 while True:
     # z tego co zrozumiałam, musimy pamiętać, żeby cały kod był pisany w tej pętli bo inaczej kapica i padnie, wiec pamietajcie o wciąęciu <3
     #kolorek tła - RGB
