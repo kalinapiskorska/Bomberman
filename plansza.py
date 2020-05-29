@@ -28,73 +28,11 @@ while True:
 
     #rysowanko bloków/murów
     #murek góry - miejsce na wynik i dane
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(0,0,800,45))
-    #murek dolny
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(0,660,800,15))
-
-    # pierwsza kolumna murków
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(20,80,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(20,180,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(20,280,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(20,380,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(20,480,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(20,580,40,40))
-
-    # druga kolumna murków
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(120,80,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(120,180,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(120,280,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(120,380,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(120,480,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(120,580,40,40))
-
-    # trzecia kolumna murków
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(220,80,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(220,180,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(220,280,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(220,380,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(220,480,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(220,580,40,40))
-
-    # czwarta kolumna murkow
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(320,80,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(320,180,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(320,280,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(320,380,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(320,480,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(320,580,40,40))
-
-    # piąta kolumna murków
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(420,80,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(420,180,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(420,280,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(420,380,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(420,480,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(420,580,40,40))
-
-    # szósta kolumna murków
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(520,80,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(520,180,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(520,280,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(520,380,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(520,480,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(520,580,40,40))
-
-    #siódma kolumna murków
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(620,80,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(620,180,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(620,280,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(620,380,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(620,480,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(620,580,40,40))
-
-    # ósma kolumna murków
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(720,80,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(720,180,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(720,280,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(720,380,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(720,480,40,40))
-    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(720,580,40,40))
-
+    # rzędy murków
+    for i in range(8):
+        for j in range(6):
+            rec_on_X = [20,120,220,320,420,520,620,720]
+            rec_on_Y = [80,180,280,380,480,580]
+            pygame.draw.rect(screen, (203, 203, 179),pygame.Rect(rec_on_X[i],rec_on_Y[j],40,40))
 
     pygame.display.update()
