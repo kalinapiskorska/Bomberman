@@ -28,7 +28,12 @@ while True:
 
     #rysowanko bloków/murów
     #murek góry - miejsce na wynik i dane
-    # rzędy murków
+    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(0,0,800,45))
+    #murek dolny
+    pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(0,660,800,15))
+
+
+# rzędy murków
     for i in range(8):
         for j in range(6):
             rec_on_X = [20,120,220,320,420,520,620,720]
