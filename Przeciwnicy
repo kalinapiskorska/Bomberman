@@ -1,24 +1,69 @@
-#PRZECIWNICY - it aint much, but its honest work
-#przeciwnicy - grafika
+#TO PRZED PĘTLĄ
+# początkowe miejsce przeciwnika, bo w pętli wariuje
+#1
+enemyX1 = random.randint(0,765)
+enemyY1 = random.randint(45,620)
+#2
+enemyX2 = random.randint(0,765)
+enemyY2 = random.randint(45,620)
+#3
+enemyX3 = random.randint(0,765)
+enemyY3 = random.randint(45,620)
+#4
+enemyX4 = random.randint(0,765)
+enemyY4 = random.randint(45,620)
+
+
+#TO W PĘTLI
+    #Enemy img
         enemyImg = pygame.image.load(enemy.png)
-        
-#przeciwnicy - początkowe położenie
-#prawy dolny róg
-        enemy_1_X = 760
-        enemy_1_Y = 620
-#lewy górny róg
-        enemy_2_X = 0
-        enemy_2_Y = 50
-#prawy górny róg
-        enemy_3_X = 760
-        enemy_3_Y = 50
-#lewy dolny róg
-        enemy_4_X = 0
-        enemy_4_Y = 620
-        
-#spawn przeciwników
-        def enemy_appear():
-            screen.blit(enemyImg, (int(enemy_1_X), int(enemy_1_Y)))
-            screen.blit(enemyImg, (int(enemy_2_X), int(enemy_2_Y)))
-            screen.blit(enemyImg, (int(enemy_3_X), int(enemy_3_Y)))
-            screen.blit(enemyImg, (int(enemy_4_X), int(enemy_4_Y)))
+
+    #początkowy ruch - każdy przeciwnik w inną stronę, żeby jakaś różnorodność była
+    #1
+        enemyX1_change = 0.3
+        enemyY1_change = 0
+        enemyX1 += enemyX1_change
+        enemyY1 += enemyY1_change
+    #2
+        enemyX2_change = 0
+        enemyY2_change = 0.3
+        enemyX2 += enemyX2_change
+        enemyY2 += enemyY2_change
+    #3
+        enemyX3_change = -0.3
+        enemyY3_change = 0
+        enemyX3 += enemyX3_change
+        enemyY3 += enemyY3_change
+    #4
+        enemyX4_change = 0
+        enemyY4_change = -0.3
+        enemyX4 += enemyX4_change
+        enemyY4 += enemyY4_change
+
+    #teleportowanie po wpadnięciu w scianę - bo nie umiem zrobić, żeby się odbijali :(
+    #1
+        if enemyX1 >= 765:
+             enemyX1_change = - 765
+             enemyX1 += enemyX1_change
+    #2
+        if enemyY2 >= 620:
+            enemyY2_change = -620
+            enemyY2 += enemyY2_change
+    #3
+        if enemyX3 <=0:
+            enemyX3_change = +765
+            enemyX3 += enemyX3_change
+    #4
+        if enemyY4 <=45:
+            enemyY4_change = +620
+            enemyY4 += enemyY4_change
+
+
+    #spawn przeciwników
+        def enemy(x,y):
+            screen.blit(enemyImg,(x,y))
+
+        enemy(enemyX1, enemyY1)
+        enemy(enemyX2, enemyY2)
+        enemy(enemyX3, enemyY3)
+        enemy(enemyX4, enemyY4)
