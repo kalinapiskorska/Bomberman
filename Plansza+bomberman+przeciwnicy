@@ -142,60 +142,60 @@ while True:
         elif player_on_Y >= 600:
             player_on_Y = 600
 
-        # przywołanie tej funkcji = gracz pojawia się na ekranie
-        player_appear()
+    # przywołanie tej funkcji = gracz pojawia się na ekranie
+    player_appear()
 
     #Enemy img
-        enemyImg = pygame.image.load(enemy.png)
+    enemyImg = pygame.image.load(enemy.png)
 
     #początkowy ruch - każdy przeciwnik w inną stronę, żeby jakaś różnorodność była
     #1
-        enemyX1_change = 0.3
-        enemyY1_change = 0
-        enemyX1 += enemyX1_change
-        enemyY1 += enemyY1_change
+    enemyX1_change = 0.3
+    enemyY1_change = 0
+    enemyX1 += enemyX1_change
+    enemyY1 += enemyY1_change
     #2
-        enemyX2_change = 0
-        enemyY2_change = 0.3
-        enemyX2 += enemyX2_change
-        enemyY2 += enemyY2_change
+    enemyX2_change = 0
+    enemyY2_change = 0.3
+    enemyX2 += enemyX2_change
+    enemyY2 += enemyY2_change
     #3
-        enemyX3_change = -0.3
-        enemyY3_change = 0
-        enemyX3 += enemyX3_change
-        enemyY3 += enemyY3_change
+    enemyX3_change = -0.3
+    enemyY3_change = 0
+    enemyX3 += enemyX3_change
+    enemyY3 += enemyY3_change
     #4
-        enemyX4_change = 0
-        enemyY4_change = -0.3
-        enemyX4 += enemyX4_change
-        enemyY4 += enemyY4_change
+    enemyX4_change = 0
+    enemyY4_change = -0.3
+    enemyX4 += enemyX4_change
+    enemyY4 += enemyY4_change
 
     #teleportowanie po wpadnieciu w sciane
     #1
-        if enemyX1 >= 765:
-             enemyX1_change = - 765
-             enemyX1 += enemyX1_change
+    if enemyX1 >= 765:
+        enemyX1_change = - 765
+        enemyX1 += enemyX1_change
     #2
-        if enemyY2 >= 620:
-            enemyY2_change = -620
-            enemyY2 += enemyY2_change
+    if enemyY2 >= 620:
+        enemyY2_change = -620
+        enemyY2 += enemyY2_change
     #3
-        if enemyX3 <=0:
-            enemyX3_change = +765
-            enemyX3 += enemyX3_change
+    if enemyX3 <=0:
+        enemyX3_change = +765
+        enemyX3 += enemyX3_change
     #4
-        if enemyY4 <=45:
-            enemyY4_change = +620
-            enemyY4 += enemyY4_change
+    if enemyY4 <=45:
+        enemyY4_change = +620
+        enemyY4 += enemyY4_change
 
 
     #spawn przeciwników
-        def enemy(x,y):
-            screen.blit(enemyImg,(x,y))
+    def enemy(x,y):
+        screen.blit(enemyImg,(x,y))
 
-        enemy(enemyX1, enemyY1)
-        enemy(enemyX2, enemyY2)
-        enemy(enemyX3, enemyY3)
-        enemy(enemyX4, enemyY4)
+    enemy(enemyX1, enemyY1)
+    enemy(enemyX2, enemyY2)
+    enemy(enemyX3, enemyY3)
+    enemy(enemyX4, enemyY4)
 
-        pygame.display.update()
+    pygame.display.update()
