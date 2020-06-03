@@ -7,8 +7,10 @@ screen = pygame.display.set_mode((800,670))
 pygame.display.set_caption("Bomberman")
 icon = pygame.image.load("/Users/marta/Desktop/projekt/bomba.jpg")
 pygame.display.set_icon(icon)
+#wydarzenia do pomiaru czasu
 COUNTDOWN=pygame.USEREVENT + 1
 EXPLOSIOON=pygame.USEREVENT + 2
+#pomocnicze zmienne, bo nie wiem jak inaczej
 timer1=0
 timer2=0
 timer3=0
@@ -34,9 +36,7 @@ def player_appear():
 
 
 
-# lista współrzędnych prostokątów, które są przeszkodami
-# istotne dla niewchodzenia na przeszkody - sprawdzane w "collision" przez
-# funkcję .collidelist()
+
 
 
 
@@ -59,15 +59,21 @@ enemyY3 = random.randint(45,620)
 enemyX4 = random.randint(0,765)
 enemyY4 = random.randint(45,620)
 
+#dodawanie przeciwników do listy
 enemies=[]
 def enemyspawn(x,y,list):
     enemies.append(pygame.Rect(x, y,35, 40))
     return list
-
+  
+#spawn i poruszanie się rzeciwników
 def enemyupdate(list):
     for e in list:
         screen.blit(enemyImg,e)
 
+    
+# lista współrzędnych prostokątów, które są przeszkodami
+# istotne dla niewchodzenia na przeszkody - sprawdzane w "collision" przez
+# funkcję .collidelist()
 walls = []
 def Walls(list):
     for i in range(8):
@@ -78,7 +84,7 @@ def Walls(list):
             pygame.draw.rect(screen, (203, 203, 179),pygame.Rect(rec_on_X[i],rec_on_Y[j],40,40))
             return rec_on_X,rec_on_Y,list
 
-def Walls2(screen):
+def Walls2():
     #murek góry - miejsce na wynik i dane
     pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(0,0,800,45))
     #murek dolny
@@ -89,23 +95,22 @@ while True:
     # padnie, wiec pamietajcie o wciąęciu <3
     #kolorek tła - RGB
     screen.fill((99, 184, 72))
+    
     # przywołanie tej funkcji = gracz pojawia się na ekranie
     screen.blit(playerImg, (int(player_on_X), int(player_on_Y)))
     player_box = pygame.Rect(int(player_on_X+3), int(player_on_Y),35, 40)
+    
     #rysowanko bloków/murów
     Walls(walls)
-    Walls2(screen)
-    collision = player_box.collidelist(walls)
-
-    # rzędy murków
-
-
-    # int przy playerach bo python się czepiał
+    Walls2()
+    
     # player_box to prostokąt otaczajacy gracza - jeżeli koliduje z przeszkodami
     # z listy "walls" to funkcja collidelist zwraca wartość równą indeksowi
     # prostokąta kolidującego z tej listy
     # np. player_box koliduje z drugim prostokątem na liście (indeks = 1) -
     # wtedy collision = 1. Jeżeli nic nie koliduje collision = -1
+    collision = player_box.collidelist(walls)
+    
 
     # odkomentuj poniższe żeby zobaczyć jak wygląda player box:
     # pygame.draw.rect(screen, (255, 203, 179),pygame.Rect(int(player_on_X+3), int(player_on_Y),35, 40))
@@ -147,7 +152,7 @@ while True:
 
 
 
-
+#przy wciśnięciu spacji uruchamiany jest event do pomiaru czasu i wyświetlana ikonka bomby
             if event.key==pygame.K_SPACE or timer1==1:
                 timer1=1
                 bomb_x=int(player_on_X)
@@ -156,15 +161,17 @@ while True:
                     pygame.time.set_timer(COUNTDOWN, 3000)
                     timer2=1
                 screen.blit(bombimg,(bomb_x,bomb_y))
-
+          
+# po minięciu 3 sekund bomba wybucha, żeby zmienić ikonke bomby na wybuch chyba trzeba wszystko od nowa wyświetlać
+#te zmienne time są, żeby odpowiednie rzeczy się wykonywały tylko raz, a inne w pętli
             if event.type==COUNTDOWN or timer3==1:
                 timer1=0
                 timer3=1
                 while timer4==0:
                     screen.fill((99, 184, 72))
                     Walls(rec_on_X,rec_on_Y)
-                    Walls2(screen)
-                    creen.blit(playerImg, (int(player_on_X), int(player_on_Y)))
+                    Walls2()
+                    screen.blit(playerImg, (int(player_on_X), int(player_on_Y)))
                     player_box = pygame.Rect(int(player_on_X+3), int(player_on_Y),35, 40)
                     pygame.time.set_timer(EXPLOSIOON, 500)
                     pygame.time.set_timer(COUNTDOWN, 0)
@@ -180,7 +187,7 @@ while True:
                         enemies.remove(e)
                 screen.fill((99, 184, 72))
                 Walls(rec_on_X,rec_on_Y)
-                Walls2(screen)
+                Walls2()
                 creen.blit(playerImg, (int(player_on_X), int(player_on_Y)))
                 player_box = pygame.Rect(int(player_on_X+3), int(player_on_Y),35, 40)
 
