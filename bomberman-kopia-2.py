@@ -5,15 +5,21 @@ screen = pygame.display.set_mode((800,670))
 
 #tytuł i ikonka
 pygame.display.set_caption("Bomberman")
-icon = pygame.image.load("bomba.jpg")
+icon = pygame.image.load('bomba.jpg')
 pygame.display.set_icon(icon)
 COUNTDOWN=pygame.USEREVENT + 1
 
 # GRACZ - BOMBERMAN
- # grafika
-bombimg=pygame.image.load("bombaboom.png")
-expimg=pygame.image.load("wybuchstraszny.png")
-playerImg = pygame.image.load("alien.png")
+# grafika
+bombimg=pygame.image.load('bombaboom.png')
+expimg=pygame.image.load('wybuchstraszny.png')
+playerImg = pygame.image.load('alien.png')
+# przeciwnicy grafika
+enemyImg = pygame.image.load('enemy.png')
+madImg = pygame.image.load('mad.png')
+angryImg = pygame.image.load('angry.png')
+grumpyImg = pygame.image.load('grumpy.png')
+
 # początkowe położenie - oś X i oś Y
 player_on_X = 360
 player_on_Y = 480
@@ -26,10 +32,6 @@ def player_appear():
     screen.blit(playerImg, (int(player_on_X), int(player_on_Y)))
     player_box = pygame.Rect(int(player_on_X+3), int(player_on_Y),35, 40)
     return player_box
-
-
-
-
 
 #współrzędne dla bomb
 bomb_x=0
@@ -62,9 +64,11 @@ def enemyspawn(x,y,list):
 
 #funkcja wyświetlająca przeciwników
 def enemyupdate(list):
-    for e in list:
-        screen.blit(enemyImg,e)
-    del list[:]
+        screen.blit(enemyImg, enemies[0])
+        screen.blit(madImg, enemies[1])
+        screen.blit(angryImg, enemies[2])
+        screen.blit(grumpyImg, enemies[3])
+        del list[:]
 
 # lista współrzędnych prostokątów, które są przeszkodami
 # istotne dla niewchodzenia na przeszkody - sprawdzane w "collision" przez
@@ -194,12 +198,7 @@ while True:
         elif player_on_Y >= 600:
             player_on_Y = 600
 
-
-
-    #Enemy img
-    enemyImg = pygame.image.load("enemy.png")
-
-    #początkowy ruch - każdy przeciwnik w inną stronę, żeby jakaś różnorodność była
+    #początkowy ruch - każdy przeciwnik po wygenerowaniu się w losowym miejscu rusza się w inną stronę
     #1
     enemyX1_change = 2
     enemyY1_change = 0
@@ -221,7 +220,7 @@ while True:
     enemyX4 += enemyX4_change
     enemyY4 += enemyY4_change
 
-    #teleportowanie po wpadnieciu w sciane
+    #teleportacja po wpadnięciu przeciwnika w ścianę
     #1
     if enemyX1 >= 765:
         enemyX1_change = - 765
@@ -238,7 +237,6 @@ while True:
     if enemyY4 <=45:
         enemyY4_change = +620
         enemyY4 += enemyY4_change
-
 
     #spawn przeciwników
     enemyspawn(enemyX1, enemyY1,enemies)
