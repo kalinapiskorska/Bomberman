@@ -29,11 +29,9 @@ def player_appear():
 
 
 
-# lista współrzędnych prostokątów, które są przeszkodami
-# istotne dla niewchodzenia na przeszkody - sprawdzane w "collision" przez
-# funkcję .collidelist()
 
 
+#współrzędne dla bomb
 bomb_x=0
 bomb_y=0
 # ta funkcja poniżej sprawia, że poruszanie się graczem jest bardziej płynne
@@ -55,16 +53,22 @@ enemyY3 = random.randint(45,620)
 enemyX4 = random.randint(0,765)
 enemyY4 = random.randint(45,620)
 
+
+#lista zawierająca przeciwników
 enemies=[]
+#funkcja tworząca przeciwników
 def enemyspawn(x,y,list):
     enemies.append(pygame.Rect(x, y,35, 40))
 
-
+#funkcja wyświetlająca przeciwników
 def enemyupdate(list):
     for e in list:
         screen.blit(enemyImg,e)
     del list[:]
 
+# lista współrzędnych prostokątów, które są przeszkodami
+# istotne dla niewchodzenia na przeszkody - sprawdzane w "collision" przez
+# funkcję .collidelist()
 walls = []
 def Walls(list):
     for i in range(8):
@@ -81,7 +85,7 @@ def Walls2():
     #murek dolny
     pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(0,660,800,15))
 
-
+#funkcja tworząca bombe
 def plant_bomb():
     global bomb_x,bomb_y
     bomb_x=int(player_on_X)
@@ -90,6 +94,7 @@ def plant_bomb():
     screen.blit(bombimg,(bomb_x,bomb_y))
     return bomb_x,bomb_y
 
+#funkcja wybuchu
 def explode(enemies):
     global bomb_x,bomb_y
     screen.blit(expimg,(bomb_x,bomb_y))
@@ -110,25 +115,18 @@ while True:
     screen.fill((99, 184, 72))
     # przywołanie tej funkcji = gracz pojawia się na ekranie
     screen.blit(playerImg, (int(player_on_X), int(player_on_Y)))
-    player_box = pygame.Rect(int(player_on_X+3), int(player_on_Y),35, 40)
+
     #rysowanko bloków/murów
     Walls(walls)
     Walls2()
-    collision = player_box.collidelist(walls)
 
-    # rzędy murków
-
-
-    # int przy playerach bo python się czepiał
     # player_box to prostokąt otaczajacy gracza - jeżeli koliduje z przeszkodami
     # z listy "walls" to funkcja collidelist zwraca wartość równą indeksowi
     # prostokąta kolidującego z tej listy
     # np. player_box koliduje z drugim prostokątem na liście (indeks = 1) -
     # wtedy collision = 1. Jeżeli nic nie koliduje collision = -1
-
-    # odkomentuj poniższe żeby zobaczyć jak wygląda player box:
-    # pygame.draw.rect(screen, (255, 203, 179),pygame.Rect(int(player_on_X+3), int(player_on_Y),35, 40))
-
+    player_box = pygame.Rect(int(player_on_X+3), int(player_on_Y),35, 40)
+    collision = player_box.collidelist(walls)
 
 
     #obsługa zdarzeń - pętla żeby okno się nie zamykało
@@ -164,22 +162,13 @@ while True:
                 else:
                     player_move_Y = -0.5
 
-
-
-
+#przy wcisnięciu spacji uruchamia się funkcja tworząca bombe
             if event.key == pygame.K_SPACE:
                 plant_bomb()
 
-
-
+#po minięciu 3 sekund wybuch
         if event.type==COUNTDOWN :
             explode(enemies)
-
-
-
-
-
-
 
         # gdy przestaję naciskać, puszcza klawisz (keyup),
         # gracz przestaje się ruszać
@@ -252,15 +241,10 @@ while True:
 
 
     #spawn przeciwników
-
-
-
-
     enemyspawn(enemyX1, enemyY1,enemies)
     enemyspawn(enemyX2, enemyY2,enemies)
     enemyspawn(enemyX3, enemyY3,enemies)
     enemyspawn(enemyX4, enemyY4,enemies)
-
     enemyupdate(enemies)
 
     pygame.display.flip()
