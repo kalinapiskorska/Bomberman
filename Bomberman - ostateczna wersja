@@ -5,7 +5,7 @@ screen = pygame.display.set_mode((800,670))
 
 #tytuł i ikonka
 pygame.display.set_caption("Bomberman")
-icon = pygame.image.load('bomba.jpg')
+icon = pygame.image.load('bombaboom.png')
 pygame.display.set_icon(icon)
 COUNTDOWN=pygame.USEREVENT + 1
 
