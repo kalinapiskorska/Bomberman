@@ -211,8 +211,8 @@ while True:
             player_on_X = 750
         if player_on_Y <= 45:
             player_on_Y = 45
-        elif player_on_Y >= 600:
-            player_on_Y = 600
+        elif player_on_Y >= 615:
+            player_on_Y = 615
 
     #początkowy ruch - każdy przeciwnik po wygenerowaniu się w losowym miejscu rusza się w inną stronę
     #1
