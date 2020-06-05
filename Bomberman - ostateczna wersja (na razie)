@@ -73,7 +73,6 @@ enemyY3 = random.randint(45,620)
 enemyX4 = random.randint(0,765)
 enemyY4 = random.randint(45,620)
 
-
 #lista zawierająca przeciwników
 enemies=[]
 #funkcja tworząca przeciwników
@@ -149,7 +148,6 @@ while True:
     # wtedy collision = 1. Jeżeli nic nie koliduje collision = -1
     player_box = pygame.Rect(int(player_on_X+3), int(player_on_Y),35, 40)
     collision = player_box.collidelist(walls)
-
 
     #obsługa zdarzeń - pętla żeby okno się nie zamykało
     for event in pygame.event.get():
