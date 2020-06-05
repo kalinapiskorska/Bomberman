@@ -100,7 +100,6 @@ def Walls(list):
             list.append([rec_on_X[i], rec_on_Y[j],35,35])
             pygame.draw.rect(screen, (203, 203, 179),pygame.Rect(rec_on_X[i],rec_on_Y[j],40,40))
 
-
 def Walls2():
     #murek góry - miejsce na wynik i dane
     pygame.draw.rect(screen, (203, 203, 179), pygame.Rect(0,0,800,45))
